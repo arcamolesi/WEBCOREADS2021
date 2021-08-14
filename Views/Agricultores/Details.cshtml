@@ -1,0 +1,43 @@
+﻿@model WEBCOREADS2021.Models.Dominio.Agricultor
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Agricultor</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.proprietario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.proprietario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.municipio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.municipio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bairro)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bairro)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idade)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
