@@ -27,13 +27,27 @@ namespace WEBCOREADS2021.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("bairro")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("cpf")
+                        .IsRequired()
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<int>("idade")
-                        .HasColumnType("int");
+                        .HasColumnType("Int");
 
                     b.Property<string>("municipio")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("proprietario")
                         .IsRequired()
@@ -42,7 +56,10 @@ namespace WEBCOREADS2021.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Agricultor");
+                    b.HasIndex("cpf")
+                        .IsUnique();
+
+                    b.ToTable("Agricultores");
                 });
 
             modelBuilder.Entity("WEBCOREADS2021.Models.Dominio.Area", b =>
@@ -53,23 +70,27 @@ namespace WEBCOREADS2021.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("bairro")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("gps")
                         .HasColumnType("int");
 
-                    b.Property<float>("hectares")
-                        .HasColumnType("real");
+                    b.Property<double>("hectares")
+                        .HasColumnType("float");
 
                     b.Property<string>("municipio")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
-                    b.Property<int?>("produtorid")
+                    b.Property<int>("produtorID")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
-                    b.HasIndex("produtorid");
+                    b.HasIndex("produtorID");
 
                     b.ToTable("Areas");
                 });
@@ -82,13 +103,18 @@ namespace WEBCOREADS2021.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("descricao")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
-                    b.Property<float>("quantidade")
-                        .HasColumnType("real");
+                    b.Property<double>("quantidade")
+                        .HasColumnType("float");
 
-                    b.Property<float>("valor")
-                        .HasColumnType("real");
+                    b.Property<int>("tipoinsumo")
+                        .HasColumnType("int");
+
+                    b.Property<double>("valor")
+                        .HasColumnType("float");
 
                     b.HasKey("id");
 
@@ -102,23 +128,26 @@ namespace WEBCOREADS2021.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("areaid")
+                    b.Property<int>("areaID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("insumoid")
+                    b.Property<DateTime>("data")
+                        .HasColumnType("Date");
+
+                    b.Property<int>("insumoID")
                         .HasColumnType("int");
 
-                    b.Property<float>("quantidade")
-                        .HasColumnType("real");
+                    b.Property<double>("quantidade")
+                        .HasColumnType("float");
 
-                    b.Property<float>("valor")
-                        .HasColumnType("real");
+                    b.Property<double>("valor")
+                        .HasColumnType("float");
 
                     b.HasKey("id");
 
-                    b.HasIndex("areaid");
+                    b.HasIndex("areaID");
 
-                    b.HasIndex("insumoid");
+                    b.HasIndex("insumoID");
 
                     b.ToTable("InsumosArea");
                 });
@@ -127,7 +156,9 @@ namespace WEBCOREADS2021.Migrations
                 {
                     b.HasOne("WEBCOREADS2021.Models.Dominio.Agricultor", "produtor")
                         .WithMany("areas")
-                        .HasForeignKey("produtorid");
+                        .HasForeignKey("produtorID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("produtor");
                 });
@@ -136,11 +167,15 @@ namespace WEBCOREADS2021.Migrations
                 {
                     b.HasOne("WEBCOREADS2021.Models.Dominio.Area", "area")
                         .WithMany("insumos")
-                        .HasForeignKey("areaid");
+                        .HasForeignKey("areaID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("WEBCOREADS2021.Models.Dominio.Insumo", "insumo")
-                        .WithMany("areas")
-                        .HasForeignKey("insumoid");
+                        .WithMany("areasinsumo")
+                        .HasForeignKey("insumoID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("area");
 
@@ -159,7 +194,7 @@ namespace WEBCOREADS2021.Migrations
 
             modelBuilder.Entity("WEBCOREADS2021.Models.Dominio.Insumo", b =>
                 {
-                    b.Navigation("areas");
+                    b.Navigation("areasinsumo");
                 });
 #pragma warning restore 612, 618
         }
