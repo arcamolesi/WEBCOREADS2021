@@ -38,5 +38,7 @@ namespace WEBCOREADS2021.Models.Dominio
         public int gps { get; set; }
 
         public ICollection<InsumoArea> insumos { get; set; }
+        ///teste
+        ///
     }
 }
