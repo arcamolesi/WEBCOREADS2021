@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WEBCOREADS2021</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -24,8 +25,33 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                           <li>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Cadastros
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Agricultores" asp-action="Index">Agricultor</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Areas" asp-action="Index">Area</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Insumos" asp-action="Index">Insumo</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="InsumosAreas" asp-action="Index">Insumo Area</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Agricultores" asp-action="Create"> Adicionar Agricultor</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Areas" asp-action="Create">Adicionar Area</a></li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
+        
             </div>
         </nav>
     </header>

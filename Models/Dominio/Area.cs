@@ -17,11 +17,13 @@ namespace WEBCOREADS2021.Models.Dominio
         public int id { get; set; }
 
         [Display(Name = "Produtor Rural")]
-        public Agricultor produtor { get; set; }
         public int produtorID { get; set; }
+        [Display(Name = "Produtor Rural")]
+        public Agricultor produtor { get; set; }
+ 
 
         [Display(Name ="Hectares")]
-        [DisplayFormat(DataFormatString ="0:F2", ApplyFormatInEditMode =true)]
+       // [DisplayFormat(DataFormatString ="{0:F2}", ApplyFormatInEditMode =true)]
         public float hectares { get; set; }
 
         [StringLength(25, ErrorMessage = "Tamanho de nome do bairro inválido - 25")]

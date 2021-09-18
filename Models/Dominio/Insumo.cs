@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace WEBCOREADS2021.Models.Dominio
 {
-    public enum TipoInsumo {Defensivo, Adubo, Semente, Herbicida, Lubrificante, Combustível }
-   
+    public enum TipoInsumo { Adubo, Semente, Combustivel, Lubrificante, Herbicida, Inseticida, Outros }
+
 
     public class Insumo
     {
-        public enum TipoInsumo { Adubo, Semente, Combustivel, Lubrificante, Herbicida, Inseticida, Outros }
-
         [Key]
         [Display(Name = "ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -36,7 +34,18 @@ namespace WEBCOREADS2021.Models.Dominio
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public float valor { get; set; }
 
-        public int teste { get; set; }
+        [Display(Name = "Total")]
+        [NotMapped]
+        public virtual float total {
+            get { return (float) (this.quantidade * this.valor); }
+        }
+
+        [Display(Name = "Situação")]
+        [NotMapped]
+        public virtual string situacao
+        {
+            get { return ((valor > 0) ? "verde" : "vermelho"); }
+        }
 
         public ICollection<InsumoArea> areasinsumo { get; set; }
 

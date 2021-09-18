@@ -1,0 +1,51 @@
+﻿@model WEBCOREADS2021.Models.Dominio.Insumo
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Insumo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="descricao" class="control-label"></label>
+                <input asp-for="descricao" class="form-control" />
+                <span asp-validation-for="descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tipoinsumo" class="control-label"></label>
+                <select asp-for="tipoinsumo" asp-items="ViewBag.tInsumo" class="form-control">
+                    <option selected="selected" value="">Selecione um Elemento</option>
+                </select>
+                <span asp-validation-for="tipoinsumo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="quantidade" class="control-label"></label>
+                <input asp-for="quantidade" class="form-control" />
+                <span asp-validation-for="quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="valor" class="control-label"></label>
+                <input asp-for="valor" class="form-control" />
+                <span asp-validation-for="valor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -10,23 +10,22 @@ using WEBCOREADS2021.Models.Dominio;
 
 namespace WEBCOREADS2021.Controllers
 {
-    public class AreasController : Controller
+    public class InsumosController : Controller
     {
         private readonly Contexto _context;
 
-        public AreasController(Contexto context)
+        public InsumosController(Contexto context)
         {
             _context = context;
         }
 
-        // GET: Areas
+        // GET: Insumos
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Areas.Include(a => a.produtor);
-            return View(await contexto.ToListAsync());
+            return View(await _context.Insumos.ToListAsync());
         }
 
-        // GET: Areas/Details/5
+        // GET: Insumos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,42 +33,49 @@ namespace WEBCOREADS2021.Controllers
                 return NotFound();
             }
 
-            var area = await _context.Areas
-                .Include(a => a.produtor)
+            var insumo = await _context.Insumos
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (area == null)
+            if (insumo == null)
             {
                 return NotFound();
             }
 
-            return View(area);
+            return View(insumo);
         }
 
-        // GET: Areas/Create
+        // GET: Insumos/Create
         public IActionResult Create()
         {
-            ViewData["produtorID"] = new SelectList(_context.Agricultores, "id", "proprietario");
+             var tInsumo = Enum.GetValues(typeof(TipoInsumo))
+                           .Cast<TipoInsumo>()
+                           .Select(e => new SelectListItem
+                           {
+                              Value = e.ToString(),
+                              Text = e.ToString()
+                           });
+
+            ViewBag.tInsumo = tInsumo;
+
             return View();
         }
 
-        // POST: Areas/Create
+        // POST: Insumos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,produtorID,hectares,bairro,municipio,gps")] Area area)
+        public async Task<IActionResult> Create([Bind("id,descricao,tipoinsumo,quantidade,valor")] Insumo insumo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(area);
+                _context.Add(insumo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["produtorID"] = new SelectList(_context.Agricultores, "id", "proprietario", area.produtorID);
-            return View(area);
+            return View(insumo);
         }
 
-        // GET: Areas/Edit/5
+        // GET: Insumos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,23 +83,33 @@ namespace WEBCOREADS2021.Controllers
                 return NotFound();
             }
 
-            var area = await _context.Areas.FindAsync(id);
-            if (area == null)
+            var insumo = await _context.Insumos.FindAsync(id);
+            if (insumo == null)
             {
                 return NotFound();
             }
-            ViewData["produtorID"] = new SelectList(_context.Agricultores, "id", "proprietario", area.produtorID);
-            return View(area);
+
+            var tInsumo = Enum.GetValues(typeof(TipoInsumo))
+              .Cast<TipoInsumo>()
+              .Select(e => new SelectListItem
+              {
+                  Value = e.ToString(),
+                  Text = e.ToString()
+              });
+
+            ViewBag.tInsumo = tInsumo;
+
+            return View(insumo);
         }
 
-        // POST: Areas/Edit/5
+        // POST: Insumos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,produtorID,hectares,bairro,municipio,gps")] Area area)
+        public async Task<IActionResult> Edit(int id, [Bind("id,descricao,tipoinsumo,quantidade,valor")] Insumo insumo)
         {
-            if (id != area.id)
+            if (id != insumo.id)
             {
                 return NotFound();
             }
@@ -102,12 +118,12 @@ namespace WEBCOREADS2021.Controllers
             {
                 try
                 {
-                    _context.Update(area);
+                    _context.Update(insumo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AreaExists(area.id))
+                    if (!InsumoExists(insumo.id))
                     {
                         return NotFound();
                     }
@@ -118,11 +134,10 @@ namespace WEBCOREADS2021.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["produtorID"] = new SelectList(_context.Agricultores, "id", "bairro", area.produtorID);
-            return View(area);
+            return View(insumo);
         }
 
-        // GET: Areas/Delete/5
+        // GET: Insumos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +145,30 @@ namespace WEBCOREADS2021.Controllers
                 return NotFound();
             }
 
-            var area = await _context.Areas
-                .Include(a => a.produtor)
+            var insumo = await _context.Insumos
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (area == null)
+            if (insumo == null)
             {
                 return NotFound();
             }
 
-            return View(area);
+            return View(insumo);
         }
 
-        // POST: Areas/Delete/5
+        // POST: Insumos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var area = await _context.Areas.FindAsync(id);
-            _context.Areas.Remove(area);
+            var insumo = await _context.Insumos.FindAsync(id);
+            _context.Insumos.Remove(insumo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AreaExists(int id)
+        private bool InsumoExists(int id)
         {
-            return _context.Areas.Any(e => e.id == id);
+            return _context.Insumos.Any(e => e.id == id);
         }
     }
 }

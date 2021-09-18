@@ -1,23 +1,20 @@
-﻿@model IEnumerable<WEBCOREADS2021.Models.Dominio.Area>
+﻿@model IEnumerable<WEBCOREADS2021.Models.Dominio.Agricultor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "GerarAgricultores";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>GerarAgricultores</h1>
 
 <p>
-    <a asp-action="Create">Adicionar Nova Area</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.produtor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.hectares)
+                @Html.DisplayNameFor(model => model.proprietario)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.bairro)
@@ -26,7 +23,13 @@
                 @Html.DisplayNameFor(model => model.municipio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.gps)
+                @Html.DisplayNameFor(model => model.idade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cpf)
             </th>
             <th></th>
         </tr>
@@ -35,10 +38,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.produtor.proprietario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hectares)
+                @Html.DisplayFor(modelItem => item.proprietario)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.bairro)
@@ -47,7 +47,13 @@
                 @Html.DisplayFor(modelItem => item.municipio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.gps)
+                @Html.DisplayFor(modelItem => item.idade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpf)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

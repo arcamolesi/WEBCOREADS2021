@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WEBCOREADS2021.Models.Dominio.Area>
+﻿@model IEnumerable<WEBCOREADS2021.Models.Dominio.InsumoArea>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,25 +8,25 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Adicionar Nova Area</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.produtor)
+                @Html.DisplayNameFor(model => model.area)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.hectares)
+                @Html.DisplayNameFor(model => model.insumo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.bairro)
+                @Html.DisplayNameFor(model => model.data)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.municipio)
+                @Html.DisplayNameFor(model => model.quantidade)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.gps)
+                @Html.DisplayNameFor(model => model.valor)
             </th>
             <th></th>
         </tr>
@@ -35,19 +35,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.produtor.proprietario)
+                @Html.DisplayFor(modelItem => item.area.bairro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.hectares)
+                @Html.DisplayFor(modelItem => item.insumo.descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.bairro)
+                @Html.DisplayFor(modelItem => item.data)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.municipio)
+                @Html.DisplayFor(modelItem => item.quantidade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.gps)
+                @Html.DisplayFor(modelItem => item.valor)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
