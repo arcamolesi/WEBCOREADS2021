@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace WEBCOREADS2021.Models.Dominio
 {
-    public enum TipoInsumo { Adubo, Semente, Combustivel, Lubrificante, Herbicida, Inseticida, Outros }
+    public enum TipoInsumo { Defensivo, Adubo, Semente, Herbicida, Lubrificante, Combustível }
 
 
     public class Insumo
     {
+        public enum TipoInsumo { Adubo, Semente, Combustivel, Lubrificante, Herbicida, Inseticida, Inoculante, Maquina, Implemento, Outros }
         [Key]
         [Display(Name = "ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

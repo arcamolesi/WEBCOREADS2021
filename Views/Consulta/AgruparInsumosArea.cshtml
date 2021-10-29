@@ -1,11 +1,11 @@
-﻿@model IEnumerable<WEBCOREADS2021.Models.Dominio.Insumo>
+﻿@model IEnumerable<WEBCOREADS2021.Models.Consulta.InsumoGrp>
 
 @{
-    ViewData["Title"] = "gerarInsumos";
+    ViewData["Title"] = "AgruparInsumosArea";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>gerarInsumos</h1>
+<h1>AgruparInsumosArea</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,16 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.descricao)
+                @Html.DisplayNameFor(model => model.agricultor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tipoinsumo)
+                @Html.DisplayNameFor(model => model.area)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.quantidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.valor)
+                @Html.DisplayNameFor(model => model.total)
             </th>
             <th></th>
         </tr>
@@ -32,16 +29,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.descricao)
+                @Html.DisplayFor(modelItem => item.agricultor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.tipoinsumo)
+                @Html.DisplayFor(modelItem => item.area)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.quantidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.valor)
+                @Html.DisplayFor(modelItem => item.total)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

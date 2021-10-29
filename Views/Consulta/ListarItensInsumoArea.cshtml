@@ -1,11 +1,11 @@
-﻿@model IEnumerable<WEBCOREADS2021.Models.Dominio.InsumoArea>
+﻿@model IEnumerable<WEBCOREADS2021.Models.Consulta.Itens>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ListarItensInsumoArea";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>ListarItensInsumoArea</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,19 +14,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.area)
+                @Html.DisplayNameFor(model => model.agricultor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bairroArea)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hectares)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.insumo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.data)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.quantidade)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
             </th>
             <th></th>
         </tr>
@@ -35,13 +41,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.area.bairro)
+                @Html.DisplayFor(modelItem => item.agricultor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.insumo.descricao)
+                @Html.DisplayFor(modelItem => item.bairroArea)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.data)
+                @Html.DisplayFor(modelItem => item.hectares)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.insumo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.quantidade)
@@ -50,10 +59,9 @@
                 @Html.DisplayFor(modelItem => item.valor)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                @Html.DisplayFor(modelItem => item.total)
             </td>
+            
         </tr>
 }
     </tbody>

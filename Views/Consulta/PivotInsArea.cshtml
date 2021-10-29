@@ -1,0 +1,86 @@
+﻿@model IEnumerable<WEBCOREADS2021.Models.Consulta.PivotInsumoArea>
+
+@{
+    ViewData["Title"] = "PivotInsArea";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>PivotInsArea</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.agricultor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro8)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro9)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.agricultor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro7)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro8)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro9)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
